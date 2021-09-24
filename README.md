@@ -4,7 +4,7 @@ O objetivo desde post é mostrar como é possível implementar a função lag() 
 
 ## Conceito
 
-A função PostgreSQL LAG fornece acesso a uma linha que vem antes da linha atual em um deslocamento físico especificado. Em outras palavras, a partir da linha atual, a função LAG () pode acessar os dados da linha anterior, ou da linha anterior à linha anterior, e assim por diante.
+A função LAG fornece acesso a uma linha que vem antes da linha atual em um deslocamento físico especificado. Em outras palavras, a partir da linha atual, a função LAG () pode acessar os dados da linha anterior, ou da linha anterior à linha anterior, e assim por diante.
 
 
 ![1](https://user-images.githubusercontent.com/20893840/134688216-c90c684c-ce07-46c3-b5d8-f3e7c0052aa2.png)
@@ -99,7 +99,7 @@ FROM
 
 ## Utilizando a Função rank() para simular o lag()
 
-1º Ranqueamos os dados por ano, mês
+1º Ranquear os dados por ano, mês
 
 ```sql
 WITH dados AS
@@ -115,7 +115,7 @@ SELECT mes,
 
 ![image](https://user-images.githubusercontent.com/20893840/134691969-ba607901-f907-41fe-8f79-707b003185a6.png)
 
-2º Fazemos um left outer join com a mesma resultset, porém com  <b>rnk = rnk + 1 </b>  
+2º Fazer um left outer join com a mesma resultset, porém com  <b>rnk = rnk + 1 </b>  (Isso desloca o resultado para baixo)
 
 ```sql
 WITH dados AS
@@ -148,7 +148,7 @@ LEFT OUTER JOIN
       ORDER BY 1) v) v2 ON (v.rnk = v2.rnk + 1)
 ```
 
-3º Efetuamos o cálculo
+3º Realizar o cálculo
 
 ```sql
 WITH dados AS
